@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+	<title>用户管理</title>
+	<style>
+		body {
+			font-size:.85em;
+			color:#232323;
+			background-color:#fff;
+		}
+		#Paging a {
+			background-color:#008844;
+			border:1px solid white;
+			text-decoration:none;
+			color:white;
+			padding:.1em .26em .2em .26em;
+			margin:0px 5px;
+		}
+		#Paging a.selected {
+			background-color:#AA7700;
+		}
+	</style>
+</head>
+<body>
+	<h1>用户管理</h1>
+	<h2>用户列表</h2>
+	<div>
+		<label>每页显示：</label>
+		<select id="s1" onchange='ChangePageItem(this);'>
+			<option value='3'>3</option>
+			<option value='5'>5</option>
+			<option value='7'>7</option>
+		</select>
+	</div><br/>
+	<table border="1" id="list">
+		<tr>
+			<th>选择</th>
+			<th>用户ID</th>
+			<th>username</th>
+			<th>password</th>
+			<th>email</th>
+			<th>用户类型</th>
+		</tr>
+		{% for item in datas %}
+		<tr>
+			<td><input type="checkbox" value="itema" /></td>
+			<td>{{ item.id }}</td>
+			<td>{{ item.username }}</td>
+			<td>{{ item.password }}</td>
+			<td>{{ item.email }}</td>
+			<td>{{ item.userTypeID.TypeName }}</td>
+		</tr>
+		{% endfor %}
+	</table>
+	<br/><br/>
+	
+	<input type="checkbox" id="ckall"/>
+	<input type="button" id="btall" value="全(不)选" />
+	<input type="button" id="reverse" value="反选"/>
+	<input type="button" id="getvalus" value="获取所选中的值"/>
+	
+	<br/><br/>
+	<div id="Paging">
+		<p>总数：{{ total }}</p>
+		{{ htmls }}
+	</div>
+	<br/><br/>
+	当前用户：{{ username }}<br/>
+	<a href='/hostM/index/'>返回主页</a>
+<script src='/static/jquery-3.1.1.min.js'></script>
+<script src='/static/jquery.cookie.js'></script>
+<script type="text/javascript">
+	$(function(){
+		var per_item = $.cookie('page_num')
+		if(per_item){
+			$('#s1').val(per_item);
+		}
+	})
+	function ChangePageItem(arg) {
+		//创建或修改cookie值
+		var value = $(arg).val();
+		$.cookie('page_num',value,{path:'/'});
+		window.location.reload(); 
+	}
+	
+	$("#ckall").click(function(){
+		if(this.checked){
+			$("#list :checkbox").attr("checked",true);
+		}else{
+			$("#list :checkbox").attr("checked",false);
+		}
+	});
+	
+	$("#btall").click(function(){
+		var Ccheck = $("#list :checkbox").attr("checked");
+		if(Ccheck){
+			$("#list :checkbox").attr("checked",false);
+		}else{
+			$("#list :checkbox").attr("checked",true);
+		}
+	});
+	
+	$("#reverse").click(function(){
+		$("#list :checkbox").each(function(){
+			$(this).prop("checked",!$(this).prop("checked"));
+		});
+	});
+	
+	$("#getvalus").click(function(){
+		var values = new Array;
+		$("#list :checkbox[checked]").each(function(i){
+			values[i] = $(this).val();
+		});
+		var str_values = values.join(',');
+		alert(str_values);
+	});
+
+</script>
+</body>
+</html>

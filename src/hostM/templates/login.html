@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+	<title>login</title>
+	<script type="text/javascript">
+		function register() {
+			window.location.href='regist'
+		}
+	</script>
+</head>
+
+<body>
+	<h1>用户登录</h1>
+	<div id="login">
+	
+	<form method="post" action="/hostM/login/">
+		
+		{{ UserForms.as_p }}
+		<input type="submit" value="登录"/>
+		<!--{{ UserForms.username }}  -->
+		<br/>
+		{{ status }}
+	</form>
+	<br/><br/>
+	<a href='/hostM/regist/'><input type="button" value='用户注册'></a>
+	</div>
+</body>
+</html>

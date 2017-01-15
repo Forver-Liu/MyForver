@@ -18,7 +18,7 @@ class userType(models.Model):
 class admins(models.Model):
     username = models.CharField(max_length=150)
     password = models.CharField(max_length=150)
-    phonenum = models.IntegerField()
+    phonenum = models.PositiveIntegerField()
     email = models.EmailField()
     loginsIP = models.GenericIPAddressField(default="0.0.0.0",protocol="both",null=True)
     userinfos = models.CharField(max_length=500,default="user")

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+
+	<link rel="stylesheet" href="/static/css/com.css" />
+		{% block css %}
+		{% endblock %}
+</head>
+<body>
+	<div class="pg-header">
+		<div class="header-content">
+			<a class="dig-log" href="/"></a>
+			<div class="action-menu">
+				<a class="tb active" href="/">全部</a>
+				<a class="tb" href="/">42区</a>
+				<a class="tb" href="/">段子</a>
+				<a class="tb" href="/">IT</a>
+				<a class="tb" href="/">图片</a>
+			</div>
+			<div class="key-sera">
+				<form action="/search/show" method="post" id="searchFrm">
+					<input type="text" name="words" class="serch-txt-s" autocomplete="off" id="txtSearch" />
+				</form>
+			</div>
+			<div class="action-nav">
+				<a id="reg-link-a" class="login-btn-a" href="/process1/regist/">注册</a>
+				<a id="login-link-a" class="login-btn-a" href="/process1/login/">登录</a>
+			</div>
+		</div>
+	</div>
+	
+	<div class="pg-body" >
+		<div class="main-content-body" >
+			<div class="conetent-L">
+			{% block body %}
+			{% endblock %}
+			
+			</div>
+		</div>
+	</div>
+	
+	<div class="pg-footer"></div>
+	
+	<script src="/static/js/jquery-3.1.1.min.js"></script>
+	{% block js %}
+	{% endblock %}
+</body>
+</html>

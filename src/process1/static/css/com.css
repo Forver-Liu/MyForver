@@ -1,0 +1,101 @@
+body {
+	margin: 0;
+	padding: 0;
+}
+
+.pg-header {
+	height: 44px;
+	background-color: #2459a2;
+}
+
+.header-content {
+	width: 1016px;
+	margin: 0 auto;
+	line-height: 44px;
+	position: relative;
+}
+.dig-log{
+	width: 121px;
+	height: 23px;
+	background: url(/static/imgs/index.png) no-repeat 0 0;
+	float: left;
+	margin-top: 11px;
+}
+.action-menu{
+	float: left;
+	margin-left: 20px;
+}
+a.tb {
+	color: #c0cddf;
+	margin-left: -3px;
+	margin-left: -5px;
+	padding: 0 13px 0 16px;
+	display: inline-block;
+	vertical-align: 1px\9;
+}
+
+a.tb:hover{
+	color: #fff;
+	background-color: #204982;
+}
+
+a.active {
+	color: #c0cdff;
+	margin-left: -3px;
+	margin-left: -5px;
+	padding: 0 13px 0 16px;
+	display: inline-block;
+	vertical-align: 1px\9;
+}
+
+a.active:hover{
+	color: #00ff00;
+	background-color: #204982;
+}
+
+a {
+	text-decoration: none;
+}
+.key-sera {
+    float: right;
+    margin-top: 6px;
+}
+.search-txt-s {
+	color: #333;
+	line-height: 25px\9;
+	padding: 2px 2px 2px 5px;
+	height: 25px;
+	width: 91px;
+}
+。action-nav{
+	color: #fff;
+	margin: 0 5px;
+	display: inline-block;
+	vertical-align: 1px\9;
+	height: 44px;
+	padding: 0 20px;
+}
+。login-btn-a{
+	color: #369;
+	padding-left: 8px;
+	padding-right: 8px;
+}
+.pg-body {
+	background-color: #ededed;
+	padding-top: 44px;
+}
+.main-content-body{
+	width: 960px;
+	margin: 0 auto;
+	background-color: #FFCCCC;
+}
+.conetent-L{
+	width: 630px;
+	margin-top: 3px;
+}
+.item{
+	margin-top:10px;
+}
+.hide{
+	diplay:none;
+}

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+	<title>login</title>
+</head>
+<body>
+	<h1>管理面板</h1>
+	<h2>用户列表</h2>
+	<table border="1">
+		<tr>
+			<th>用户ID</th>
+			<th>username</th>
+			<th>password</th>
+			<th>email</th>
+			<th>用户类型</th>
+		</tr>
+		{% for item in userdatas %}
+		<tr>
+			<td>{{ item.id }}</td>
+			<td>{{ item.username }}</td>
+			<td>{{ item.password }}</td>
+			<td>{{ item.email }}</td>
+			<td>{{ item.userTypeID.TypeName }}</td>
+		</tr>
+		{% endfor %}
+	</table>
+	<br/><br/>
+	<a href='/hostM/pages/'>分页显示</a><br/>
+	当前用户：{{ username }}<br/>
+	<a href='/hostM/logout/'>退出登录</a>
+
+</body>
+</html>

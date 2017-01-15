@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+	<title>regist</title>
+	<style type="text/css">
+    	body{color:#efd;background:#453;padding:0 5em;margin:0}
+    	h1{padding:2em 1em;background:#675}
+    	h2{color:#bf8;border-top:1px dotted #fff;margin-top:2em}
+    	p{margin:1em 0}
+  	</style>
+</head>
+
+<body>
+<h1>用户注册</h1>
+	<div id="regist">
+	<form method="post">
+		{{ RForm.as_p }}
+		<br/>
+		<p>用户角色
+			<select name='usertype'>
+				{% for item in usertype %}
+					<option value="{{item.id}}">{{item.TypeName}}</option>
+				{% endfor %}
+			</select>
+		</p>
+		<input type='submit' value='提交注册'/>
+	</form>
+	<p>{{ msgs }}</p>
+	</div>
+</body>
+</html>

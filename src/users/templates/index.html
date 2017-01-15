@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+	<link rel="stylesheet" href="/static/css/idx.css"/>
+	<title>用户管理</title>
+	<style type="text/css">
+		body{
+			margin:0px;
+			padding:0px;
+		}
+		.full{
+			background-color:#FFCCCC;
+			width:80%;
+			margin:0 auto;
+			border:dotted 1px;
+			padding:0 15px;
+		}
+		。regist{
+			padding:15px 15px;
+		}
+		.group{
+			margin: 15px 0px;
+			height: 38px;
+			font-size: 14px;
+			position: relative;
+			line-height: 38px;
+		}
+		.tip{
+			width: 100px;
+			display: inline-block;
+			text-align: right;
+			font-size: 14px;
+		}
+		.red{
+			color:#c00;
+		}
+		。lists{
+			margin-top:20px;
+		}
+		.hide{
+			display:none;
+		}
+	</style>	
+</head>
+<body>
+<div>
+	<div class='full'>
+		<div class='regist'>
+			<h1>用户添加</h1>
+			<!-- {{ data.as_p }}  -->
+			<a href='/users/regist/'>添加用户</a>
+		</div>
+		
+		
+		<div class='lists'>
+			<h1>用户列表</h1>
+		<table border="1" id="list">
+			<tr>
+				<th>用户ID</th>
+				<th>用户名</th>
+				<th>用户类型</th>
+				<th>邮箱</th>
+				<th>电话号码</th>
+				<th>主机地址</th>
+				<th>注册时间</th>
+				<th>操作</th>
+			</tr>
+			{% for user in data %}
+			<tr>
+				<td>{{ user.id }}</td>
+				<td>{{ user.username }}</td>
+				<td>{{ user.usertype }}</td>
+				<td>{{ user.email }}</td>
+				<td>{{ user.phonenum }}</td>
+				<td>127.0.0.1</td>
+				<td>shijian</td>
+				<td>删除</td>
+			</tr>
+			{% endfor %}
+		</table>
+		</div>
+	</div>
+</div>
+</body>
+</html>

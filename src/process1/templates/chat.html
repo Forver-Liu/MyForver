@@ -1,0 +1,131 @@
+{% extends 'base.html' %}
+
+{% block css %}
+	<title>chat</title>
+	<style>
+		.history{
+			height:300px;
+			background-color:#CCFFFF;
+		}
+		.message{
+			margin:20px auto;
+			height:50px;	
+			background-color:#CCCC00;
+		}
+		textarea{
+			resize: none;
+			height: 46px;
+			width: 80%;
+			background: 0 0;
+			border: none;
+			color: #434950;
+			padding: 0;
+		}
+		.sendbtn{
+			border-radius: 4px;
+			border: 1px #e8e8e8 solid;
+			width: 60px;
+			height: 22px;
+			margin-top: 4px;
+			line-height: 22px;
+			text-align: center;
+		}
+	</style>
+{% endblock %}
+
+{% block body %}
+	<div class="history" id="chatpool">
+	</div>
+	<div class="message">
+		<textarea name="text" id="message"></textarea>
+		<input type="button" class="sendbtn" value="发送" onclick="sendmsg();"/>
+	</div>
+
+{% endblock %}
+
+{% block js %}
+	<script type="text/javascript">
+		function sendmsg(){	
+			var content=$('#message').val();
+			//console.log(content);
+			
+			$.ajax({
+				url:'/process1/subchat/',
+				data:{data:content},
+				type:"POST",
+				success:function(callback){
+					var callback = jQuery.parseJSON(callback);
+					//console.log(callback);
+					if(callback.stat==0){
+						console.log("submit chat success");
+						var template="<div><div>"+callback.data.username+"---"+callback.data.create_date+"</div>"+content+"</div";	
+						$('#chatpool').append(template);
+						$('#message').val('');
+						window.last_id = callback.data.id;
+						var height = document.getElementByID("chatpool")
+						$('#chatpool').scrollTop(height);
+					}else{
+						alert('回复失败');
+					}
+					
+				}
+			});
+		}
+		
+		//setInterval('getchats()',1000);
+		
+		window.i = 1;
+		function going(){
+			window.i = window.i + 1;
+			console.log(window.i);
+		}
+		
+		window.is_first = true;
+		function getchats(){
+			if(window.is_first){
+				$.ajax({
+					url:'/process1/getchats/',
+					type:'GET',
+					success:function(callback){
+						var callback = jQuery.parseJSON(callback);
+						if(callback.stat==0){
+							window.last_id = callback.last_id;
+							var callback = callback.reverse();
+							console.log("get chats");
+							$.each(callback.data,function(k,v){
+								var template="<div><div>"+v.user__username+"---"+v.create_date+"</div>"+v.content+"</div";
+								$('#chatpool').append(template);
+							});
+							window.is_first = false;
+						}
+						var height = document.getElementByID("chatpool")
+						$('#chatpool').scrollTop(height);
+					}
+				});
+			}else{
+				$.ajax({
+					url:'/process1/getchats2/',
+					type:'GET',
+					data:{lastid:window.last_id},
+					success:function(callback){
+						var callback = jQuery.parseJSON(callback);
+						if(callback.stat==0){
+							if(callback.data.length==0){
+								return;
+							}
+							window.last_id = callback.data[callback.data.length-1].id;
+							console.log("get chats");
+							$.each(callback.data,function(k,v){
+								var template="<div><div>"+v.user__username+"---"+v.create_date+"</div>"+v.content+"</div";
+								$('#chatpool').append(template);
+							});
+							window.is_first = false;
+						}
+						var height = document.getElementByID("chatpool")
+						$('#chatpool').scrollTop(height);
+					}
+				});
+			}
+		}
+	</script>
+{% endblock %}

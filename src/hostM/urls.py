@@ -1,4 +1,4 @@
-"""forever URL Configuration
+"""work1 URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/1.10/topics/http/urls/
@@ -15,15 +15,20 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-import views
+import views_clc,views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    #url(r'^addme/',views.addme),
+    url(r'plug/(?P<a>\d+)/(?P<b>\d+)/',views_clc.plug1),
+    url(r'plug/$',views_clc.plug2),
     
-    url(r'^login/',views.login),
-    url(r'^user_index/',views.user_index),
-    url(r'^regist/',views.regist),
- #   url(r'^host/',include(host)),
-  #  url(r'^msg/',include(msg)),
+    url(r'adduser/$',views.adduser),
+    url(r'addusertype/$',views.addUserType),
+    
+    url(r'login/$',views.login),
+    url(r'regist/$',views.regist),
+    url(r'index/$',views.index),
+    url(r'logout/$',views.logout),
+    
+    url(r'pages/(\d*)',views.pages),
 ]
